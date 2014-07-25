@@ -3,8 +3,7 @@ class CreatePuzzles < ActiveRecord::Migration
     create_table :puzzles do |t|
       t.string :name
       t.text :instructions
-      t.string :language
-      t.text :test_code
+      t.string :solution
 
       t.timestamps
     end

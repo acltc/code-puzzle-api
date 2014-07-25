@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(version: 20140725192413) do
   create_table "puzzles", force: true do |t|
     t.string   "name"
     t.text     "instructions"
-    t.string   "language"
-    t.text     "test_code"
+    t.string   "solution"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
