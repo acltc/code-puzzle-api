@@ -1,10 +1,10 @@
 class Api::V1::PuzzlesController < ApplicationController
   respond_to :json, :xml, :html
-
   
 
   def index
       @puzzles = Puzzle.all
+      @solutions = params[:solution]
   end
 
   def show 
