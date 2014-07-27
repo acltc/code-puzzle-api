@@ -1,7 +1,14 @@
 class Api::V1::PuzzlesController < ApplicationController
+  respond_to :json, :xml, :html
+
+  
 
   def index
       @puzzles = Puzzle.all
+  end
+
+  def show 
+    @puzzle = Puzzle.find_by(:id => params[:id])
   end
 
   def create
@@ -13,5 +20,5 @@ class Api::V1::PuzzlesController < ApplicationController
 
   def puzzle_params
     return params.require(:puzzle).permit(:name, :instructions, :solution)
-    
+  end  
 end
