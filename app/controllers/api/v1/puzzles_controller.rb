@@ -19,7 +19,10 @@ class Api::V1::PuzzlesController < ApplicationController
 
   def create
     @puzzle = Puzzle.new(puzzle_params)
-    @puzzle.save
+    if @puzzle.save
+    else
+      render :json => @puzzle.errors
+    end
   end
 
   def check_solution
@@ -37,10 +40,10 @@ class Api::V1::PuzzlesController < ApplicationController
 
   def puzzle_params
     return params.require(:puzzle).permit(:name, :instructions, :solution)
-  end  
+  end
+    
   def search
     @results = Puzzle.where("name LIKE '%#{params[:name]}%'")
   end
-
 
 end
