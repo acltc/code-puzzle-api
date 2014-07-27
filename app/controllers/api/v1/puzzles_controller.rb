@@ -16,6 +16,17 @@ class Api::V1::PuzzlesController < ApplicationController
     @puzzle.save
   end
 
+  def check_solution
+    @solution = Puzzle.find_by(:id => params[:id])
+    @proposed = params[:solution]
+    if @solution.solution == @proposed
+      render :json => {"response" => "correct"}
+    else
+      render :json => {"response" => "incorrect"}
+    end
+  end
+
+
   private
 
   def puzzle_params
