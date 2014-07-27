@@ -1,0 +1,9 @@
+            Prefix Verb   URI Pattern                        Controller#Action
+    api_v1_puzzles GET    /api/v1/puzzles(.:format)          api/v1/puzzles#index
+                   POST   /api/v1/puzzles(.:format)          api/v1/puzzles#create
+ new_api_v1_puzzle GET    /api/v1/puzzles/new(.:format)      api/v1/puzzles#new
+edit_api_v1_puzzle GET    /api/v1/puzzles/:id/edit(.:format) api/v1/puzzles#edit
+     api_v1_puzzle GET    /api/v1/puzzles/:id(.:format)      api/v1/puzzles#show
+                   PATCH  /api/v1/puzzles/:id(.:format)      api/v1/puzzles#update
+                   PUT    /api/v1/puzzles/:id(.:format)      api/v1/puzzles#update
+                   DELETE /api/v1/puzzles/:id(.:format)      api/v1/puzzles#destroy
