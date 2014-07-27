@@ -9,6 +9,8 @@ class Api::V1::PuzzlesController < ApplicationController
 
   def show 
     @puzzle = Puzzle.find_by(:id => params[:id])
+    @solution = params[:solution]
+    render(json: "Puzzle is not found", status: 404) unless @puzzle
   end
 
   def create
