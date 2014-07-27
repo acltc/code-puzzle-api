@@ -5,6 +5,11 @@ class Api::V1::PuzzlesController < ApplicationController
 
   def index
       @puzzles = Puzzle.all
+      search_term =params[:q]
+
+      if params[:q] 
+        @puzzles = Puzzle.where("instructions LIKE '%#{search_term}%'")
+      end
   end
 
   def show 
@@ -21,4 +26,9 @@ class Api::V1::PuzzlesController < ApplicationController
   def puzzle_params
     return params.require(:puzzle).permit(:name, :instructions, :solution)
   end  
+  def search
+    @results = Puzzle.where("name LIKE '%#{params[:name]}%'")
+  end
+
+
 end
