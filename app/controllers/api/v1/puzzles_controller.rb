@@ -3,12 +3,12 @@ class Api::V1::PuzzlesController < ApplicationController
   
 
   def index
-      @puzzles = Puzzle.all
-      @solution = params[:solution]
-      search_term =params[:q]
-      if params[:q] 
-        @puzzles = Puzzle.where("instructions LIKE '%#{search_term}%'")
-      end
+    @puzzles = Puzzle.all
+    @solution = params[:solution]
+    search_term =params[:q]
+    if params[:q] 
+      @puzzles = Puzzle.where("instructions LIKE ?", "%#{search_term}%")
+    end
   end
 
   def show 
