@@ -70,7 +70,59 @@ describe 'GET /api/v1/puzzles' do
         
       ]
     )
-  end
+   end
+   it 'should create new puzzle and save name, instructions, solution, and created_at and search for puzzle using keyword in description' do
+      
+      puzzle = Puzzle.create(name: "Multiples of 3 and 5", instructions: "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.", solution: "test")
+
+      get 'api/v1/puzzles.json?q=natural'
+
+      puzzle.reload
+
+      expect(response_json).to eq(
+      [
+        {
+          'id' => puzzle.id,
+          'name' => puzzle.name,
+          'instructions' => puzzle.instructions,
+          'created_at' => puzzle.created_at.iso8601(3),
+          'updated_at' => puzzle.updated_at.iso8601(3)      
+        },
+        
+      ]
+    )
+    end
+    it 'should create new puzzle and save name, instructions, solution, and created_at and search for puzzle using keyword from name' do
+      
+      puzzle = Puzzle.create(name: "Multiples of 3 and 5", instructions: "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.", solution: "test")
+
+      get 'api/v1/puzzles.json?q=Multiples'
+
+      puzzle.reload
+
+      expect(response_json).to eq(
+      [
+        {
+          'id' => puzzle.id,
+          'name' => puzzle.name,
+          'instructions' => puzzle.instructions,
+          'created_at' => puzzle.created_at.iso8601(3),
+          'updated_at' => puzzle.updated_at.iso8601(3)      
+        },
+        
+      ]
+    )
+    end
+    it 'should create new puzzle and save name, instructions, solution, and created_at and search for puzzle using keyword not found in neither name or description' do
+      
+      puzzle = Puzzle.create(name: "Multiples of 3 and 5", instructions: "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.", solution: "test")
+
+      get 'api/v1/puzzles.json?q=house'
+
+      puzzle.reload
+
+      expect(response_json).to eq([])
+    end
 end
 
 describe 'GET /api/v1/puzzles.json?solution=true' do
