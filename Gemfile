@@ -18,6 +18,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'quiet_assets'
   gem 'seed_dump'
+  gem 'upton'
+  gem 'nokogiri'
+
 end
 
 # Use ActiveModel has_secure_password
