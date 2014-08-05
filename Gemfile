@@ -20,6 +20,11 @@ group :development, :test do
   gem 'seed_dump'
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

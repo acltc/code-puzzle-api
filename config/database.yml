@@ -47,8 +47,10 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: code-puzzle-api_production
-  username: code-puzzle-api
-  password: <%= ENV['CODE-PUZZLE-API_DATABASE_PASSWORD'] %>
+
